@@ -7,7 +7,7 @@
 [![Packagist](https://poser.pugx.org/laratoolbox/query-viewer/d/total.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 [![Packagist](https://img.shields.io/packagist/l/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 
-Package description: CHANGE ME
+Package description: This package adds sql methods for eloquent and query builder.
 
 ## Installation
 
@@ -24,7 +24,18 @@ php artisan vendor:publish --provider="LaraToolbox\QueryViewer\QueryViewerServic
 
 ## Usage
 
-CHANGE ME
+After installing this package you may use these methods on eloquent and db builder.
+- `getSql`
+  * This method returns sql query.
+  * Differences between `toSql` and this method is this method returns sql with question marks (?) replaced.
+
+- `dumpSql`
+  * This method prints sql query and returns builder.
+
+- `logSql`
+  * This method logs sql query and returns builder.
+  * Log type can be set in config file.
+
 
 ## Security
 
