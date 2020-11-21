@@ -9,8 +9,12 @@
   "type": "library",
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "Semih ERDOGAN",
+      "email": "hasansemiherdogan@gmail.com"
+    },
+    {
+      "name": "Dincer DEMIRCIOGLU",
+      "email": "dinncer@gmail.com"
     }
   ],
   "require": {
