@@ -23,7 +23,11 @@ class QueryViewerServiceProvider extends \Illuminate\Support\ServiceProvider
             'query-viewer'
         );
 
-        EloquentQueryBuilder::mixin(new QueryBuilderMixin());
-        QueryBuilder::mixin(new QueryBuilderMixin());
+        $queryBuilderMixin = new QueryBuilderMixin();
+
+        foreach (get_class_methods($queryBuilderMixin) as $method) {
+            EloquentQueryBuilder::macro($method, $queryBuilderMixin->{$method}());
+            QueryBuilder::macro($method, $queryBuilderMixin->{$method}());
+        }
     }
 }

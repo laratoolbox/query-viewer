@@ -68,7 +68,7 @@ class QueryBuilderMixin
      */
     public function getSqlFunc($func = null)
     {
-        return function () use ($func) {
+        return function ($func) {
             $func($this->getSql());
 
             return $this;
