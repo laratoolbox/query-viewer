@@ -20,8 +20,23 @@ class QueryViewerTest extends TestCase
         ];
     }
 
-    public function testExample()
+    public function testGetSqlMethodExistsOnEloquentBuilder()
     {
-        $this->assertEquals(1, 1);
+        $this->assertEquals(
+            'select `name` from `test_table` where `id` = 5',
+            EloquentBuilderTest::select('name')->where('id', 5)->getSql()
+        );
+    }
+
+    public function testGetSqlMethodExistsOnDatabaseBuilder()
+    {
+        $this->assertEquals(
+            'select `name` from `test_table` where `id` = 5',
+            \DB::table('test_table')->select('name')->where('id', 5)->getSql()
+        );
     }
 }
+
+class EloquentBuilderTest extends \Illuminate\Database\Eloquent\Model {
+    protected $table = 'test_table';
+};
