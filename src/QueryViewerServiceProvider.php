@@ -25,6 +25,7 @@ class QueryViewerServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $queryBuilderMixin = new QueryBuilderMixin();
 
+        // TODO: use mixin method for laravel 7 and 8.
         foreach (get_class_methods($queryBuilderMixin) as $method) {
             EloquentQueryBuilder::macro($method, $queryBuilderMixin->{$method}());
             QueryBuilder::macro($method, $queryBuilderMixin->{$method}());
