@@ -6,7 +6,13 @@
 [![Packagist](https://poser.pugx.org/laratoolbox/query-viewer/d/total.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 [![Packagist](https://img.shields.io/packagist/l/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 
-Package description: This package adds sql methods for eloquent and query builder.
+This package adds methods for getting sql query to eloquent and database query builder.
+
+![Social Image](social.jpeg)
+
+## Requirement
+
+Laravel >= 5.5
 
 ## Installation
 
@@ -41,6 +47,9 @@ After installing this package you may use these methods on eloquent and db build
   * Returns builder.
 
 ## Examples
+
+#### Eloquent
+
 ```php
 // With eloquent
 use App\Models\User;
@@ -64,13 +73,32 @@ User::select('name')
 // select `name` from `users` where `id` = 5 and `name` != 'john'
 // select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
 // []
+```
 
+#### Database Builder
 
+```php
 // With database builder
 \DB::table('users')->select('name')->where('id', 5)->getSql();
 // 'select `name` from `users` where `id` = 5'
-```
 
+\DB::table('users')
+    ->where('id', 5)
+    ->dumpSql()
+    ->where('name', '!=', 'john')
+    ->dumpSql()
+    ->where('surname', '!=', 'doe')
+    ->logSql('SURNAME_QUERY') // logs sql to log file.
+    ->where('email', 'LIKE', '%example%')
+    ->getSqlFunc(function(string $sql) {
+        echo $sql;
+    })
+    ->get();
+// select `name` from `users` where `id` = 5
+// select `name` from `users` where `id` = 5 and `name` != 'john'
+// select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
+// []
+```
 
 ## Security
 
@@ -79,8 +107,8 @@ instead of using the issue tracker.
 
 ## Credits
 
-- [](https://github.com/laratoolbox/query-viewer)
 - [All contributors](https://github.com/laratoolbox/query-viewer/graphs/contributors)
 
-This package is bootstrapped with the help of
-[melihovv/laravel-package-generator](https://github.com/melihovv/laravel-package-generator).
+ - This package is bootstrapped with the help of [melihovv/laravel-package-generator](https://github.com/melihovv/laravel-package-generator).
+
+- Social image generated using [https://banners.beyondco.de/](https://banners.beyondco.de/)
