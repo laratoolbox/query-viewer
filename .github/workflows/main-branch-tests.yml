@@ -2,9 +2,8 @@ name: Run tests
 
 on:
   push:
-  pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+    branches:
+      - main
 
 jobs:
   php-tests:
@@ -42,7 +41,6 @@ jobs:
             php: 8.0
           - laravel: 8.*
             php: 7.2
-
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
