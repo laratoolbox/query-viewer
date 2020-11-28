@@ -1,5 +1,7 @@
 # Query Viewer
 
+![Social Image](social.jpeg)
+
 [![GitHub Workflow Status](https://github.com/laratoolbox/query-viewer/workflows/Run%20tests/badge.svg)](https://github.com/laratoolbox/query-viewer/actions)
 
 [![Packagist](https://img.shields.io/packagist/v/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
@@ -7,8 +9,6 @@
 [![Packagist](https://img.shields.io/packagist/l/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 
 This package adds methods for getting sql query to eloquent and database query builder.
-
-![Social Image](social.jpeg)
 
 ## Requirement
 
