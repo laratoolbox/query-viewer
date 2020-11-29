@@ -41,5 +41,3 @@ class EloquentBuilderTestModel extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'test_table';
 }
-
-;
