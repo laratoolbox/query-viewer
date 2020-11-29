@@ -30,18 +30,21 @@ $ php artisan vendor:publish --provider="LaraToolbox\QueryViewer\QueryViewerServ
 
 ## Usage
 
-After installing this package you may use these methods on eloquent and db builder.
+After installing this package you can use these methods on eloquent and database builder.
 
 - `getSql`
   * This method returns sql query.
   * Differences between `toSql` and this method is this method returns sql with question marks (?) replaced.
+  * Returns string.
 
 - `dumpSql`
-  * This method prints sql query and returns builder.
+  * This method prints sql query (uses dump() function)
+  * Returns builder.
 
 - `logSql`
-  * This method logs sql query and returns builder.
-  * Log type can be set in config file.
+  * This method logs sql query.
+  * Log type can be set in config file (default is "info").
+  * Returns builder.
 
 - `getSqlFunc`
   * This method takes closure and gives sql string as parameter.
