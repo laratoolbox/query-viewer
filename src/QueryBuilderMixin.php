@@ -7,15 +7,22 @@ class QueryBuilderMixin
     /**
      * Returns sql query with binding replaced!
      *
-     * @return string
+     * @param ?\Closure $callable
+     * @return
      */
     public function getSql()
     {
-        return function () {
-            return QueryViewer::replaceBindings(
+        return function ($callable = null) {
+            $sql = QueryViewer::replaceBindings(
                 $this->toSql(),
                 $this->getBindings()
             );
+
+            if (is_null($callable)) {
+                return $sql;
+            }
+
+            return $callable($sql);
         };
     }
 
@@ -39,29 +46,10 @@ class QueryBuilderMixin
      * @param null|string $prefix
      * @return
      */
-    public function logSql($prefix = null)
+    public function logSql()
     {
-        return function ($prefix) {
+        return function ($prefix = null) {
             logger()->{config('query-viewer.log_type')}($prefix.' : '.$this->getSql());
-
-            return $this;
-        };
-    }
-
-    /**
-     * This method takes closure and gives sql as its parameter.
-     * Can be used for custom logging.
-     *
-     * Example:
-     * Model::select(a, b, c)->getSqlFunc(function($sql){ logger()->error($sql); })->get();
-     *
-     * @param null|\Closure $func
-     * @return
-     */
-    public function getSqlFunc($func = null)
-    {
-        return function ($func) {
-            $func($this->getSql());
 
             return $this;
         };
