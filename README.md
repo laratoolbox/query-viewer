@@ -5,6 +5,8 @@
 [![Packagist](https://img.shields.io/packagist/l/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 [![GitHub issues](https://img.shields.io/github/issues/laratoolbox/query-viewer.svg)](https://github.com/laratoolbox/query-viewer/issues)
 
+## Package description
+
 This package adds methods for getting sql query to eloquent and database query builder.
 
 ## Requirement
