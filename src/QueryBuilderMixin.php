@@ -7,21 +7,15 @@ class QueryBuilderMixin
     /**
      * Returns sql query with binding replaced!
      *
-     * Originally Taken from: https://gist.github.com/JesseObrien/7418983
-     *
      * @return string
      */
     public function getSql()
     {
         return function () {
-            $sql = $this->toSql();
-
-            foreach ($this->getBindings() as $binding) {
-                $value = is_numeric($binding) ? $binding : "'".$binding."'";
-                $sql = preg_replace('/\?/', $value, $sql, 1);
-            }
-
-            return $sql;
+            return QueryViewer::replaceBindings(
+                $this->toSql(),
+                $this->getBindings()
+            );
         };
     }
 
@@ -48,7 +42,7 @@ class QueryBuilderMixin
     public function logSql($prefix = null)
     {
         return function ($prefix) {
-            logger()->{config('query-viewer.log_type')}($prefix. ' : '.$this->getSql());
+            logger()->{config('query-viewer.log_type')}($prefix.' : '.$this->getSql());
 
             return $this;
         };
