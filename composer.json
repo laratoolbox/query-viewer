@@ -11,11 +11,15 @@
   "authors": [
     {
       "name": "Semih ERDOGAN",
-      "email": "hasansemiherdogan@gmail.com"
+      "email": "hasansemiherdogan@gmail.com",
+      "homepage": "https://semiherdogan.net/",
+      "role": "Developer"
     },
     {
       "name": "Dincer DEMIRCIOGLU",
-      "email": "dinncer@gmail.com"
+      "email": "dinncer@gmail.com",
+      "homepage": "https://dincer.info/",
+      "role": "Developer"
     }
   ],
   "require": {
@@ -37,7 +41,7 @@
     }
   },
   "scripts": {
-    "phpunit": "phpunit"
+    "test": "vendor/bin/phpunit"
   },
   "extra": {
     "laravel": {
