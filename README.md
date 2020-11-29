@@ -11,19 +11,21 @@ This package adds methods for getting sql query to eloquent and database query b
 
 ## Requirement
 
+```
 Laravel >= 5.5
+```
 
 ## Installation
 
 Install via composer
 ```bash
-composer require laratoolbox/query-viewer
+$ composer require laratoolbox/query-viewer
 ```
 
 ### Publish package config
 
 ```bash
-php artisan vendor:publish --provider="LaraToolbox\QueryViewer\QueryViewerServiceProvider"
+$ php artisan vendor:publish --provider="LaraToolbox\QueryViewer\QueryViewerServiceProvider"
 ```
 
 ## Usage
@@ -100,7 +102,7 @@ User::select('name')
 ## Testing
 
 ``` bash
-composer test
+$ composer test
 ```
 
 ## Changelog
