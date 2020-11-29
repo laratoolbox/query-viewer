@@ -7,7 +7,17 @@
 
 ## Package description
 
-This package adds methods for getting sql query to eloquent and database query builder.
+This package adds custom sql methods to eloquent and database query builder.
+
+Laravel's `toSql()` method gives you sql query without bindings replaced.
+```sql
+select `name` from `users` where `id` = ? and `name` = ?
+```
+
+With this package you have `getSql()` method. Which gives you same result with bindings replaced.
+```sql
+select `name` from `users` where `id` = 5 and `name` = 'laravel'
+```
 
 ## Requirement
 
@@ -34,8 +44,8 @@ After installing this package you can use these methods on eloquent and database
 
 - `getSql`
   * This method returns sql query.
-  * Differences between `toSql` and this method is this method returns sql with question marks (?) replaced.
-  * Returns string.
+  * Optionally takes closure and calls closure with sql parameter.
+  * Returns string or closure result.
 
 - `dumpSql`
   * This method prints sql query (uses dump() function)
@@ -43,11 +53,8 @@ After installing this package you can use these methods on eloquent and database
 
 - `logSql`
   * This method logs sql query.
+  * Optionally takes prefix string. Which prepends to sql string.
   * Log type can be set in config file (default is "info").
-  * Returns builder.
-
-- `getSqlFunc`
-  * This method takes closure and gives sql string as parameter.
   * Returns builder.
 
 ## Examples
@@ -68,14 +75,12 @@ User::select('name')
     ->dumpSql()
     ->where('surname', '!=', 'doe')
     ->where('email', 'LIKE', '%example%')
-    ->getSqlFunc(function(string $sql) {
+    ->getSql(function(string $sql) {
         echo $sql;
-    })
-    ->get();
+    });
 // select `name` from `users` where `id` = 5
 // select `name` from `users` where `id` = 5 and `name` != 'john'
 // select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
-// []
 ```
 
 #### Database Builder
@@ -92,14 +97,12 @@ User::select('name')
     ->dumpSql()
     ->where('surname', '!=', 'doe')
     ->where('email', 'LIKE', '%example%')
-    ->getSqlFunc(function(string $sql) {
+    ->getSql(function(string $sql) {
         echo $sql;
-    })
-    ->get();
+    });
 // select `name` from `users` where `id` = 5
 // select `name` from `users` where `id` = 5 and `name` != 'john'
 // select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
-// []
 ```
 
 #### Replace bindings for all queries
