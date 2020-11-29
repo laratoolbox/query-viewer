@@ -24,7 +24,7 @@ class QueryViewerTest extends TestCase
     {
         $this->assertEquals(
             'select `name` from `test_table` where `id` = 5',
-            EloquentBuilderTest::select('name')->where('id', 5)->getSql()
+            EloquentBuilderTestModel::select('name')->where('id', 5)->getSql()
         );
     }
 
@@ -37,6 +37,9 @@ class QueryViewerTest extends TestCase
     }
 }
 
-class EloquentBuilderTest extends \Illuminate\Database\Eloquent\Model {
+class EloquentBuilderTestModel extends \Illuminate\Database\Eloquent\Model
+{
     protected $table = 'test_table';
-};
+}
+
+;

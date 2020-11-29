@@ -7,7 +7,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class QueryViewerServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    const CONFIG_PATH = __DIR__ . '/../config/query-viewer.php';
+    const CONFIG_PATH = __DIR__.'/../config/query-viewer.php';
 
     public function boot()
     {
@@ -25,7 +25,7 @@ class QueryViewerServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $queryBuilderMixin = new QueryBuilderMixin();
 
-        // TODO: use mixin method for laravel 7 and 8.
+        // TODO: use mixin for laravel version >= 7.
         foreach (get_class_methods($queryBuilderMixin) as $method) {
             EloquentQueryBuilder::macro($method, $queryBuilderMixin->{$method}());
             QueryBuilder::macro($method, $queryBuilderMixin->{$method}());
