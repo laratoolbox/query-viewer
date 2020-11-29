@@ -7,8 +7,6 @@ class QueryBuilderMixin
     /**
      * Returns sql query with binding replaced!
      *
-     * Usage: use "getSql()" instead of "toSql()" method
-     *
      * Originally Taken from: https://gist.github.com/JesseObrien/7418983
      *
      * @return string
