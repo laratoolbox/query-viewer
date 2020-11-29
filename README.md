@@ -7,16 +7,20 @@
 
 ## Package description
 
-This package adds custom sql methods to eloquent and database query builder.
+This package adds custom methods to eloquent and database query builder for getting sql query. (question marks replaced with values)
 
-Laravel's `toSql()` method gives you sql query without bindings replaced.
-```sql
-select `name` from `users` where `id` = ? and `name` = ?
+Laravel's `toSql()` method gives you sql query without bindings replaced. (see question marks below)
+```php
+\DB::table('users')->select('name')->where('id', 5)->toSql();
+
+// select `name` from `users` where `id` = ? and `name` = ?
 ```
 
 With this package you have `getSql()` method. Which gives you same result with bindings replaced.
-```sql
-select `name` from `users` where `id` = 5 and `name` = 'laravel'
+```php
+\DB::table('users')->select('name')->where('id', 5)->getSql();
+
+// select `name` from `users` where `id` = 5 and `name` = 'laravel'
 ```
 
 ## Requirement
@@ -44,7 +48,7 @@ After installing this package you can use these methods on eloquent and database
 
 - `getSql`
   * This method returns sql query.
-  * Optionally takes closure and calls closure with sql parameter.
+  * Optionally takes closure as parameter and calls closure with sql string.
   * Returns string or closure result.
 
 - `dumpSql`
@@ -53,7 +57,7 @@ After installing this package you can use these methods on eloquent and database
 
 - `logSql`
   * This method logs sql query.
-  * Optionally takes prefix string. Which prepends to sql string.
+  * Optionally takes prefix string parameter. Which prepends to sql string.
   * Log type can be set in config file (default is "info").
   * Returns builder.
 
@@ -70,17 +74,19 @@ User::select('name')->where('id', 5)->getSql();
 User::select('name')
     ->where('id', 5)
     ->dumpSql()
+    // PRINTS: select `name` from `users` where `id` = 5
     ->logSql('LOG_PREFIX_HERE') // logs sql to log file. (LOG_PREFIX_HERE : select `name` from `users` where `id` = 5)
     ->where('name', '!=', 'john')
     ->dumpSql()
+    // PRINTS: select `name` from `users` where `id` = 5 and `name` != 'john'
     ->where('surname', '!=', 'doe')
     ->where('email', 'LIKE', '%example%')
     ->getSql(function(string $sql) {
         echo $sql;
-    });
-// select `name` from `users` where `id` = 5
-// select `name` from `users` where `id` = 5 and `name` != 'john'
-// select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
+        // select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
+    })
+    ->getSql();
+    // PRINTS: select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
 ```
 
 #### Database Builder
@@ -92,17 +98,19 @@ User::select('name')
 \DB::table('users')
     ->where('id', 5)
     ->dumpSql()
+    // PRINTS: select `name` from `users` where `id` = 5
     ->logSql('LOG_PREFIX_HERE') // logs sql to log file. (LOG_PREFIX_HERE : select `name` from `users` where `id` = 5)
     ->where('name', '!=', 'john')
     ->dumpSql()
+    // PRINTS: select `name` from `users` where `id` = 5 and `name` != 'john'
     ->where('surname', '!=', 'doe')
     ->where('email', 'LIKE', '%example%')
     ->getSql(function(string $sql) {
         echo $sql;
-    });
-// select `name` from `users` where `id` = 5
-// select `name` from `users` where `id` = 5 and `name` != 'john'
-// select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
+        // select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
+    })
+    ->getSql();
+    // PRINTS: select `name` from `users` where `id` = 5 and `name` != 'john' and `surname` != 'doe' and `email` LIKE '%example%'
 ```
 
 #### Replace bindings for all queries
