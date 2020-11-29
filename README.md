@@ -1,10 +1,9 @@
 ![Social Image](social.jpeg)
 
 [![GitHub Workflow Status](https://github.com/laratoolbox/query-viewer/workflows/Run%20tests/badge.svg)](https://github.com/laratoolbox/query-viewer/actions)
-
 [![Packagist](https://img.shields.io/packagist/v/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
-[![Packagist](https://poser.pugx.org/laratoolbox/query-viewer/d/total.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
 [![Packagist](https://img.shields.io/packagist/l/laratoolbox/query-viewer.svg)](https://packagist.org/packages/laratoolbox/query-viewer)
+[![GitHub issues](https://img.shields.io/github/issues/laratoolbox/query-viewer.svg)](https://github.com/laratoolbox/query-viewer/issues)
 
 This package adds methods for getting sql query to eloquent and database query builder.
 
@@ -57,10 +56,10 @@ User::select('name')->where('id', 5)->getSql();
 User::select('name')
     ->where('id', 5)
     ->dumpSql()
+    ->logSql('LOG_PREFIX_HERE') // logs sql to log file. (LOG_PREFIX_HERE : select `name` from `users` where `id` = 5)
     ->where('name', '!=', 'john')
     ->dumpSql()
     ->where('surname', '!=', 'doe')
-    ->logSql('SURNAME_QUERY') // logs sql to log file.
     ->where('email', 'LIKE', '%example%')
     ->getSqlFunc(function(string $sql) {
         echo $sql;
@@ -81,10 +80,10 @@ User::select('name')
 \DB::table('users')
     ->where('id', 5)
     ->dumpSql()
+    ->logSql('LOG_PREFIX_HERE') // logs sql to log file. (LOG_PREFIX_HERE : select `name` from `users` where `id` = 5)
     ->where('name', '!=', 'john')
     ->dumpSql()
     ->where('surname', '!=', 'doe')
-    ->logSql('SURNAME_QUERY') // logs sql to log file.
     ->where('email', 'LIKE', '%example%')
     ->getSqlFunc(function(string $sql) {
         echo $sql;
