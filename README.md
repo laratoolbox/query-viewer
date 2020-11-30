@@ -141,6 +141,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 If you discover any security related issues, please email instead of using the issue tracker.
 
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
 ## Credits
 
 - [Semih ERDOGAN](https://github.com/semiherdogan)
