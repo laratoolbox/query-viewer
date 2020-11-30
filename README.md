@@ -115,7 +115,7 @@ User::select('name')
 
 #### Replace bindings for all queries
 
-`app/Providers/AppServiceProvider.php` use in and add code.
+Add code below into `app/Providers/AppServiceProvider.php` file for listening all queries.
 
 ```php
 use LaraToolbox\QueryViewer\QueryViewer;
