@@ -16,8 +16,21 @@ class QueryViewer
     public static function replaceBindings(string $sql, array $bindings)
     {
         foreach ($bindings as $binding) {
-            $value = is_numeric($binding) ? $binding : "'".$binding."'";
-            $sql = preg_replace('/\?/', $value, $sql, 1);
+            $binding = str_replace(
+                ["'", "\\"],
+                ["\'", "\\\\"],
+                $binding
+            );
+
+            if (is_bool($binding)) {
+                $binding = (int) $binding;
+            }
+
+            if (!is_numeric($binding)) {
+                $binding = "'$binding'";
+            }
+
+            $sql = preg_replace('/\?/', $binding, $sql, 1);
         }
 
         return $sql;
