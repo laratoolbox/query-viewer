@@ -114,6 +114,9 @@ User::select('name')
 ```
 
 #### Replace bindings for all queries
+
+Add code below into `app/Providers/AppServiceProvider.php` file for listening all queries.
+
 ```php
 use LaraToolbox\QueryViewer\QueryViewer;
 
@@ -137,6 +140,10 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Security
 
 If you discover any security related issues, please email instead of using the issue tracker.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
