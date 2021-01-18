@@ -29,6 +29,10 @@ With this package you have `getSql()` method. Which gives you same result with b
 Laravel >= 5.5
 ```
 
+## Build History
+
+[![Build History](https://buildstats.info/github/chart/laratoolbox/query-viewer?branch=main)](https://github.com/laratoolbox/query-viewer/actions)
+
 ## Installation
 
 Install via composer
